@@ -26,7 +26,7 @@ module.exports.loop = function () {
         }
     }
 
-    if (Game.spawns.energy >= 300) {
+    if (Game.room.energyCapacityAvailable == Game.room.energyAvailable) {
 
       var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
       var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
@@ -40,20 +40,21 @@ module.exports.loop = function () {
               {memory: {role: 'harvester'}});
       }
 
-      if(upgraders.length < 2) {
+      else if(upgraders.length < 2) {
           var newName = 'Upgrader' + Game.time;
           console.log('Spawning new upgrader: ' + newName);
           Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,MOVE,MOVE], newName,
               {memory: {role: 'upgrader'}});
       }
 
-      if(builders.length < 4) {
+      else if(builders.length < 4) {
           var newName = 'Builder' + Game.time;
           console.log('Spawning new builder: ' + newName);
           Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,MOVE,MOVE], newName,
               {memory: {role: 'builder'}});
       }
 
+      /*
       if(Game.spawns['Spawn1'].spawning) {
           var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
           Game.spawns['Spawn1'].room.visual.text(
@@ -62,6 +63,7 @@ module.exports.loop = function () {
               Game.spawns['Spawn1'].pos.y,
               {align: 'left', opacity: 0.8});
       }
+      */
 
     }
 
