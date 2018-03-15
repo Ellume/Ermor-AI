@@ -35,7 +35,7 @@ module.exports.loop = function () {
       //console.log('Harvesters: ' + harvesters.length);
 
       var bodyParts = [];
-      var bodyRatio = Math.floor(roomEnergy/50);
+      var bodyRatio = Math.floor(roomEnergy/250);
       for (i = 0; i < bodyRatio; i++) {
           bodyParts.push(WORK);
           bodyParts.push(CARRY);
